@@ -43,7 +43,7 @@
 192.168.100.40 server_win2
 
 # Postgres Cluster Setup
-192.168.100.41 pg-consul-prod
+192.168.100.41 pg-consul-rhel
 192.168.100.42 pg-cls1-prod0
 192.168.100.43 pg-cls1-prod1
 192.168.100.44 pg-cls1-prod2
