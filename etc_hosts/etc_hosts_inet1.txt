@@ -57,6 +57,10 @@
 192.168.100.48 pg-cls2-prod1
 192.168.100.49 pg-cls2-prod2
 
+# Postgres Cluster Setup
+192.168.100.50 pg-cls3-prod1
+192.168.100.51 pg-cls3-prod2
+
 # SQLServer lab Virtual IPs
 192.168.100.100 sqlcluster
 192.168.100.101 sqlprod1

@@ -55,6 +55,10 @@
 192.168.200.48 pg-cls2-dr1
 192.168.200.49 pg-cls2-dr2
 
+# Postgres Cluster Setup
+192.168.200.50 pg-cls3-dr1
+192.168.200.51 pg-cls3-dr2
+
 # SQLServer lab Virtual IPs
 192.168.200.101 sqldr1
 192.168.200.102 sqldr2
