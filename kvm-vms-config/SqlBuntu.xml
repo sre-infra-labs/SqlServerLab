@@ -1,35 +1,28 @@
 <domain type='kvm'>
-  <name>SqlDr-B</name>
-  <uuid>275ac338-2c20-41ad-abc9-b5e3d1f47692</uuid>
-  <description>NIC 01 -&gt; Inet2 -&gt; 192.168.200.16</description>
+  <name>SqlBuntu</name>
+  <uuid>7c91e7a6-3d9f-4cef-bb49-4fce1cf5a698</uuid>
   <metadata>
     <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
-      <libosinfo:os id="http://microsoft.com/win/2k19"/>
+      <libosinfo:os id="http://ubuntu.com/ubuntu/24.04"/>
     </libosinfo:libosinfo>
   </metadata>
-  <memory unit='KiB'>6291456</memory>
-  <currentMemory unit='KiB'>6291456</currentMemory>
-  <vcpu placement='static'>4</vcpu>
+  <memory unit='KiB'>4194304</memory>
+  <currentMemory unit='KiB'>4194304</currentMemory>
+  <vcpu placement='static'>2</vcpu>
   <os>
-    <type arch='x86_64' machine='pc-q35-6.2'>hvm</type>
-    <boot dev='hd'/>
+    <type arch='x86_64' machine='pc-q35-10.2'>hvm</type>
+    <bootmenu enable='yes'/>
   </os>
   <features>
     <acpi/>
     <apic/>
-    <hyperv mode='custom'>
-      <relaxed state='on'/>
-      <vapic state='on'/>
-      <spinlocks state='on' retries='8191'/>
-    </hyperv>
     <vmport state='off'/>
   </features>
   <cpu mode='host-passthrough' check='none' migratable='on'/>
-  <clock offset='localtime'>
+  <clock offset='utc'>
     <timer name='rtc' tickpolicy='catchup'/>
     <timer name='pit' tickpolicy='delay'/>
     <timer name='hpet' present='no'/>
-    <timer name='hypervclock' present='yes'/>
   </clock>
   <on_poweroff>destroy</on_poweroff>
   <on_reboot>restart</on_reboot>
@@ -42,12 +35,19 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='/vm-os/SqlDr-B_C_Drive.qcow2'/>
+      <source file='/vm-os/SqlBuntu.qcow2'/>
       <target dev='vda' bus='virtio'/>
-      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
+      <boot order='1'/>
+      <address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
+    </disk>
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <target dev='sda' bus='sata'/>
+      <readonly/>
+      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
     <controller type='usb' index='0' model='qemu-xhci' ports='15'>
-      <address type='pci' domain='0x0000' bus='0x02' slot='0x00' function='0x0'/>
+      <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
     </controller>
     <controller type='pci' index='0' model='pcie-root'/>
     <controller type='pci' index='1' model='pcie-root-port'>
@@ -124,13 +124,22 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x2'/>
     </controller>
     <controller type='virtio-serial' index='0'>
-      <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
+      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
+    </controller>
+    <controller type='scsi' index='0' model='virtio-scsi'>
+      <address type='pci' domain='0x0000' bus='0x08' slot='0x00' function='0x0'/>
     </controller>
     <interface type='network'>
-      <mac address='52:54:00:5b:cd:a5'/>
-      <source network='inet2'/>
+      <mac address='52:54:00:23:fe:b3'/>
+      <source network='inet1'/>
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='bridge'>
+      <mac address='52:54:00:37:33:fa'/>
+      <source bridge='bridge0'/>
+      <model type='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x02' slot='0x00' function='0x0'/>
     </interface>
     <serial type='pty'>
       <target type='isa-serial' port='0'>
@@ -140,9 +149,13 @@
     <console type='pty'>
       <target type='serial' port='0'/>
     </console>
+    <channel type='unix'>
+      <target type='virtio' name='org.qemu.guest_agent.0'/>
+      <address type='virtio-serial' controller='0' bus='0' port='1'/>
+    </channel>
     <channel type='spicevmc'>
       <target type='virtio' name='com.redhat.spice.0'/>
-      <address type='virtio-serial' controller='0' bus='0' port='1'/>
+      <address type='virtio-serial' controller='0' bus='0' port='2'/>
     </channel>
     <input type='tablet' bus='usb'>
       <address type='usb' bus='0' port='1'/>
@@ -158,7 +171,7 @@
     </sound>
     <audio id='1' type='spice'/>
     <video>
-      <model type='qxl' ram='65536' vram='65536' vgamem='16384' heads='1' primary='yes'/>
+      <model type='virtio' heads='1' primary='yes'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0'/>
     </video>
     <redirdev bus='usb' type='spicevmc'>
@@ -167,9 +180,14 @@
     <redirdev bus='usb' type='spicevmc'>
       <address type='usb' bus='0' port='3'/>
     </redirdev>
+    <watchdog model='itco' action='reset'/>
     <memballoon model='virtio'>
-      <address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
+      <address type='pci' domain='0x0000' bus='0x06' slot='0x00' function='0x0'/>
     </memballoon>
+    <rng model='virtio'>
+      <backend model='random'>/dev/urandom</backend>
+      <address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
+    </rng>
   </devices>
 </domain>
 
