@@ -1,16 +1,68 @@
 # --------------------------------------------
-# Lab Network - Inet1
+# Lab Network - inet2
+# Reserved IPs
+#   192.168.200.1 - 192.168.200.9 - No machine
+#   192.168.200.10 - sqlmonitor.lab.com
+#   192.168.200.11 - 192.168.200.99 - For Virtual Machines
+#   192.168.200.100 - 192.168.200.150 - For Virtual IPs
+#   192.168.200.151+ - For Other home network devices
 # --------------------------------------------
 
-192.168.200.1 ryzen9-inet2
+192.168.200.1 ryzen9 ryzen9-inet2
+192.168.200.10 sqlmonitor sqlmonitor.lab.com
 192.168.200.11 workstation
 192.168.200.12 sqlpractice
+# 192.168.200.13 Not-4-Use
 192.168.200.14 demo
 192.168.200.15 sqldr-a
 192.168.200.16 sqldr-b
+# 192.168.200.17 Not-4-Use
+# 192.168.200.18 Not-4-Use
+# 192.168.200.19 Not-4-Use
+# 192.168.200.20 Not-4-Use
+# 192.168.200.21 Not-4-Use
+# 192.168.200.22 Not-4-Use
+# 192.168.200.23 Not-4-Use
+# 192.168.200.24 To-be-reused
+# 192.168.200.25 Not-4-Use
+# 192.168.200.26 Not-4-Use
 192.168.200.27 sqlcluster1
+
+# Ansible Setup
+# 192.168.200.31 Not-4-Use
+# 192.168.200.32 Not-4-Use
+# 192.168.200.33 Not-4-Use
+# 192.168.200.34 Not-4-Use
+# 192.168.200.35 Not-4-Use
+# 192.168.200.36 Not-4-Use
+# 192.168.200.37 Not-4-Use
+# 192.168.200.38 Not-4-Use
+# 192.168.200.39 Not-4-Use
+# 192.168.200.40 Not-4-Use
+
+# Postgres Cluster Setup
+192.168.200.41 pg-consul-ubuntu
+192.168.200.42 pg-cls1-dr0
+192.168.200.43 pg-cls1-dr1
+192.168.200.44 pg-cls1-dr2
+
+# Postgres Logical Replication
+192.168.200.45 pg-sub
+192.168.200.46 pg-sub2
+
+# Postgres Cluster Setup
+192.168.200.47 pg-cls2-dr0
+192.168.200.48 pg-cls2-dr1
+192.168.200.49 pg-cls2-dr2
+
+# Postgres Cluster Setup
+192.168.200.50 pg-cls3-dr1
+192.168.200.51 pg-cls3-dr2
+
+# SQLServer lab Virtual IPs
 192.168.200.101 sqldr1
 192.168.200.102 sqldr2
 192.168.200.103 sqlprod1agl1
 192.168.200.104 sqlprod2agl1
 192.168.200.105 sqlprod2agl2
+

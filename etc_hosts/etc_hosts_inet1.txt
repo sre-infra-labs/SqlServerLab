@@ -1,35 +1,67 @@
 # --------------------------------------------
-# Lab Network - Inet1
+# Lab Network - inet1
+# Reserved IPs
+#   192.168.100.1 - 192.168.100.9 - No machine
+#   192.168.100.10 - sqlmonitor.lab.com
+#   192.168.100.11 - 192.168.100.99 - For Virtual Machines
+#   192.168.100.100 - 192.168.100.150 - For Virtual IPs
+#   192.168.100.151+ - For Other home network devices
 # --------------------------------------------
 
-192.168.100.1 ryzen9-inet1
-192.168.100.10 sqlmonitor
-192.168.100.11 workstation
-192.168.100.12 sqlpractice
-192.168.100.13 experiment
-192.168.100.15 sqlprod-a
-192.168.100.16 sqlprod-b
-192.168.100.17 sqlexpress
-192.168.100.18 pgprod
-192.168.100.19 vlinuxhost
-192.168.100.20 aghost-1a
-192.168.100.21 aghost-1b
-192.168.100.22 aghost-2a
-192.168.100.23 aghost-2b
-192.168.100.25 clusternode-1a
-192.168.100.26 wincluster1
-192.168.100.27 sqlcluster1
+192.168.100.1 ryzen9 ryzen9-inet1
+192.168.100.10 sqlmonitor sqlmonitor.lab.com
+192.168.100.11 workstation workstation.lab.com
+192.168.100.12 sqlpractice sqlpractice.lab.com
+192.168.100.13 experiment experiment.lab.com
+# 192.168.100.14 Not-4-Use
+192.168.100.15 sqlprod-a sqlprod-a.lab.com
+192.168.100.16 sqlprod-b sqlprod-b.lab.com
+192.168.100.17 sqlexpress sqlexpress.lab.com
 
-192.168.100.31 server_ansible
-192.168.100.32 server_centos
-192.168.100.33 server_rhel
-192.168.100.34 server_ubuntu
-192.168.100.35 server_win1
-192.168.100.36 server_win2
-192.168.100.37 server_win3
-192.168.100.38 server_win4
-192.168.100.39 server_desktop
+192.168.100.18 pgpractice pgpractice.lab.com
+# 192.168.100.19 pgpoc pgpoc.lab.com
 
+192.168.100.20 aghost-1a aghost-1a.lab.com
+192.168.100.21 aghost-1b aghost-1b.lab.com
+192.168.100.22 aghost-2a aghost-2a.lab.com
+192.168.100.23 aghost-2b aghost-2b.lab.com
+# 192.168.100.24 To-be-reused
+192.168.100.25 clusternode-1a clusternode-1a.lab.com
+192.168.100.26 wincluster1 wincluster1.lab.com
+192.168.100.27 sqlcluster1 sqlcluster1.lab.com
+
+# Ansible Setup
+192.168.100.31 ansible-git-01
+192.168.100.32 ansible-git-02
+192.168.100.33 ansible-centos
+192.168.100.34 ansible-rhel
+192.168.100.35 ansible-fedora
+192.168.100.36 ansible-ubuntu-server
+192.168.100.37 ansible-ubuntu-desktop
+192.168.100.38 ansible-ubuntu-postgres
+192.168.100.39 server_win1
+192.168.100.40 server_win2
+
+# Postgres Cluster Setup
+192.168.100.41 pg-consul-rhel
+192.168.100.42 pg-cls1-prod0
+192.168.100.43 pg-cls1-prod1
+192.168.100.44 pg-cls1-prod2
+
+# Postgres Logical Replication
+192.168.100.45 pg-pub
+192.168.100.46 pg-pub2
+
+# Postgres Cluster Setup
+192.168.100.47 pg-cls2-prod0
+192.168.100.48 pg-cls2-prod1
+192.168.100.49 pg-cls2-prod2
+
+# Postgres Cluster Setup
+192.168.100.50 pg-cls3-prod1
+192.168.100.51 pg-cls3-prod2
+
+# SQLServer lab Virtual IPs
 192.168.100.100 sqlcluster
 192.168.100.101 sqlprod1
 192.168.100.102 sqlprod2
@@ -40,3 +72,4 @@
 192.168.100.107 mirrorcluster
 192.168.100.108 sqlag1admin
 192.168.100.109 sqlag1
+
